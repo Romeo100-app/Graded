@@ -1,0 +1,409 @@
+import React, { Component } from 'react';
+import { AppRegistry, Text, View, StyleSheet, TextInput, TouchableHighlight,Image, Dimensions, ScrollView } from 'react-native';
+import { Constants } from 'expo';
+
+let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get('window').width;
+
+export default class App extends Component {
+  state={
+    homePageDisplay: 'block',
+    gradePageDisplay: 'none',
+    calPageDisplay: 'none',
+    apPageDisplay: 'none',
+    regPageDisplay: 'none',
+    apletter1: '',
+    apletter2: '',
+    apletter3: '',
+    apletter4: '',
+    apletter5: '',
+    apletter6: '',
+    apletter7: '',
+    regletter1: '',
+    regletter2: '',
+    regletter3: '',
+    regletter4: '',
+    regletter5: '',
+    regletter6: '',
+    regletter7: '',
+    countAplus: 0,
+    countA: 0,
+    countAminus: 0,
+    countBplus: 0,
+    countB: 0,
+    countBminus: 0,
+    countCplus: 0,
+    countC: 0,
+    countCminus: 0,
+    countF: 0,
+  }
+  handleHomePagePress = () => this.setState(state=> ({
+    homePageDisplay: 'block',
+    gradePageDisplay: 'none',
+    calPageDisplay: 'none',
+    apPageDisplay: 'none',
+    regPageDisplay: 'none',
+  }));
+  handleGradePagePress = () => this.setState(state=> ({
+    homePageDisplay: 'none',
+    gradePageDisplay: 'block',
+    calPageDisplay: 'none',
+    apPageDisplay: 'none',
+    regPageDisplay: 'none',
+  }));
+  handleCalPagePress = () => this.setState(state=> ({
+    homePageDisplay: 'none',
+    gradePageDisplay: 'none',
+    calPageDisplay: 'block',
+    apPageDisplay: 'none',
+    regPageDisplay: 'none',
+  }));
+  handleAPPagePress = () => this.setState(state=> ({
+    homePageDisplay: 'none',
+    gradePageDisplay: 'none',
+    calPageDisplay: 'none',
+    apPageDisplay: 'block',
+    regPageDisplay: 'none',
+  }));
+  handleRegPagePress = () => this.setState(state=> ({
+    homePageDisplay: 'none',
+    gradePageDisplay: 'none',
+    calPageDisplay: 'none',
+    apPageDisplay: 'none',
+    regPageDisplay: 'block',
+  }));
+  apUpdateGPA = () => {
+    if (this.state.apletter1.toUpperCase == 'A+'){
+      this.setState({
+        countAplus: (this.state.countAplus + 1),
+      })
+    } else if (this.state.apletter1.toUpperCase == 'A'){
+      this.setState({
+        countA: (this.state.countA + 1),
+      })
+    } else if (this.state.apletter1.toUpperCase == 'A-'){
+      this.setState({
+        countAminus: (this.state.countAminus + 1),
+      })
+    }
+  }
+
+    render() {
+        return (
+            <View style={styles.container}>
+            <View style={{display: this.state.homePageDisplay}}>
+            <View style={styles.contentContainer1}>
+                <Text style={styles.gradeTitle}>
+                  Graded
+                </Text>
+                <Text style={styles.welcome}>
+                  Your personal GPA Calculator
+                </Text>
+                <TouchableHighlight style={styles.startButton}
+                  onPress ={this.handleGradePagePress}>
+                    <Text style={styles.startText}>
+                      Get Started
+                    </Text>
+                </TouchableHighlight>
+            </View>
+            </View>
+            <View style={{display: this.state.gradePageDisplay}}>
+            <View style={styles.contentContainer}>
+                <Text style={styles.title}>
+                  Please Choose either AP or Regular
+                </Text>
+                <Text style={styles.smallText}>
+                  You will put your class and letter grade(ex. A+, A, B-, C+, etc)
+                </Text>
+            <View style={styles.buttonContainer}>
+                <TouchableHighlight style={styles.button}
+                  onPress ={this.handleAPPagePress}>
+                    <Text style={styles.navButtonText}>
+                      AP
+                    </Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={styles.button}
+                  onPress ={this.handleRegPagePress}>
+                    <Text style={styles.navButtonText}>
+                      Regular
+                    </Text>
+                </TouchableHighlight>
+            </View>
+                
+            </View>
+            </View>
+            <View style={{display: this.state.apPageDisplay}}>
+            <View style={styles.contentContainer}>
+            <ScrollView style={styles.contentContainer}>
+                <Text style={styles.welcome}>
+                  AP
+                </Text>
+            <View style={styles.row}>
+            <View style={styles.inputContainer}>
+                <Text style={styles.inputText}>
+                  Name of Course
+                </Text>
+                <TextInput style={styles.textInput1}
+                />
+            </View>
+            <View style={styles.inputContainer}>
+                <Text style={styles.inputText}>
+                  Letter Grade
+                </Text>
+                <TextInput style={styles.textInput2}
+                  onChangeText={(apletter1) => this.setState({apletter1})}
+                  value={this.state.apletter1}
+                />
+            </View>
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(apletter2) => this.setState({apletter2})}
+                  value={this.state.apletter2}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(apletter3) => this.setState({apletter3})}
+                  value={this.state.apletter3}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(apletter4) => this.setState({apletter4})}
+                  value={this.state.apletter4}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(apletter5) => this.setState({apletter5})}
+                  value={this.state.apletter5}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <TouchableHighlight style={styles.button}
+                  onPress ={this.handleGradePagePress}>
+                    <Text style={styles.navButtonText}>
+                      Back
+                    </Text>
+                </TouchableHighlight>
+            </ScrollView>
+            </View>
+            </View>
+            <View style={{display: this.state.regPageDisplay}}>
+            <View style={styles.contentContainer}>
+            <ScrollView style={styles.contentContainer}>
+                <Text style={styles.welcome}>
+                  Regular
+                </Text>
+            <View style={styles.row}>
+            <View style={styles.inputContainer}>
+                <Text style={styles.inputText}>
+                  Name of Course
+                </Text>
+                <TextInput style={styles.textInput1}
+                />
+            </View>
+            <View style={styles.inputContainer}>
+                <Text style={styles.inputText}>
+                  Letter Grade
+                </Text>
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <View style={styles.row}>
+                <TextInput style={styles.textInput1}
+                />
+                <TextInput style={styles.textInput2}
+                  onChangeText={(letter1) => this.setState({letter1})}
+                  value={this.state.letter1}
+                />
+            </View>
+            <TouchableHighlight style={styles.button}
+                  onPress ={this.handleGradePagePress}>
+                    <Text style={styles.navButtonText}>
+                      Back
+                    </Text>
+                </TouchableHighlight>
+            </ScrollView>
+            </View>
+            </View>
+            <View style={{display: this.state.calPageDisplay}}>
+            <View style={styles.contentContainer}>
+                <Text style={styles.title}>
+                  Calculate
+                </Text>
+            </View>
+            </View>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+  container: {
+
+  },
+  gradeTitle: {
+    fontSize: 80,
+    fontFamily: 'Comic Sans MS',
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  welcome: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'lightgreen',
+  },
+  contentContainer1: {
+    height: deviceHeight,
+    width: deviceWidth,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#00539CFF',
+  },
+  startButton: {
+    height: 65,
+    width: 200,
+    backgroundColor: 'yellow',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+  },
+  startText: {
+    fontSize: 20,
+    color: 'red',
+    fontWeight: 'bold',
+  },
+  contentContainer: {
+    height: deviceHeight,
+    width: deviceWidth,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00539CFF',
+  },
+  navButtonText: {
+    fontSize: 22,
+    textAlign: 'center',
+    color: '#00539CFF',
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+  },
+  button: {
+    height: deviceHeight/11,
+    width: deviceWidth/2.7,
+    backgroundColor: 'white',
+    borderColor: '#FFD662FF',
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20,
+  },
+  textInput1: {
+    height: 35,
+    width: 170,
+    backgroundColor: 'lightgrey',
+    marginTop: 5,
+  },
+  textInput2: {
+    height: 35,
+    width: 60,
+    backgroundColor: 'lightgrey',
+    marginLeft: 25,
+    marginTop: 5,
+    marginRight: 20,
+  },
+  inputContainer: {
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#FFD662FF',
+  },
+  smallText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#FFD662FF',
+    margin: 30,
+  },
+  row: {
+    flexDirection: 'row',
+    margin: 5,
+  },
+  inputText: {
+    color: '#FFD662FF',
+    fontSize: 17,
+  },
+});
